@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="utils" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release_Win64_static">
+				<Option output="../utils-1.0.0-bundle/lib/mingw_w64/win64/utils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/release/mingw_w64/win64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="../include" />
+		</Compiler>
+		<ExtraCommands>
+			<Add after="xcopy ..\include ..\utils-1.0.0-bundle\include  /E/Y/I" />
+		</ExtraCommands>
+		<Unit filename="../include/datetime/formatDateTime.h" />
+		<Unit filename="../include/file/csv_file_reader.h" />
+		<Unit filename="../include/file/properties_file_reader.h" />
+		<Unit filename="../src/file/csv_file_reader.cpp" />
+		<Unit filename="../src/file/properties_file_reader.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
