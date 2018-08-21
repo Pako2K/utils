@@ -52,31 +52,6 @@ PropertiesFileReader::PropertiesFileReader(std::string file_name) throw(std::str
 }
 
 
-/// property(string key, vector<T> &values)
-template <class TYPE, typename = std::enable_if<std::is_arithmetic<TYPE>::value> >
-std::vector<TYPE> PropertiesFileReader::propertyCast(std::string key) const throw(std::string) {
-  std::pair <std::multimap<std::string, std::string>::const_iterator, std::multimap<std::string, std::string>::const_iterator> ret;
-  ret = _properties.equal_range(key);
-  if ( ret.first == _properties.end() )
-    throw std::string("Key NOT found: " + key);
-
-  std::vector<TYPE> values;
-  values.reserve(_properties.count(key));
-  while ( ret.first != ret.second ) {
-    if ( std::is_floating_point<TYPE>::value)
-      values.push_back(TYPE(atof( (ret.first->second).c_str() )));
-    else if ( sizeof(TYPE) > sizeof(int) )
-      values.push_back(TYPE(atol( (ret.first->second).c_str() )));
-    else
-      values.push_back(TYPE(atoi( (ret.first->second).c_str() )));
-
-    ret.first++;
-  }
-
-  return values;
-}
-
-
 /// operator() (string key)
 std::vector<std::string> PropertiesFileReader::operator() (std::string key) const throw(std::string) {
   std::pair <std::multimap<std::string, std::string>::const_iterator, std::multimap<std::string, std::string>::const_iterator> ret;
