@@ -11,7 +11,7 @@ CSVFileReader::CSVFileReader(std::string file_name, char separator) throw(std::s
   // Open file
   std::ifstream file(file_name, std::ios::in);
   if (!file.is_open())
-    throw std::string("File cannot be opened");
+    throw std::string("File cannot be opened: " + file_name);
 
   // Read each line, discarding empty ones or starting with '#' or '!'
   std::string line {""};

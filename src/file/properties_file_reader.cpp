@@ -12,7 +12,7 @@ PropertiesFileReader::PropertiesFileReader(std::string file_name) throw(std::str
   // Open file
   std::ifstream prop_file(file_name, std::ios::in);
   if (!prop_file.is_open())
-    throw std::string("File cannot be opened");
+    throw std::string("File cannot be opened: " + file_name);
 
   // Read all not commented or blank lines
   std::string line {""};
