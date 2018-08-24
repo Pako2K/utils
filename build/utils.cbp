@@ -14,8 +14,9 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-Wall" />
 					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DLIB_BUILD" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -28,11 +29,13 @@
 		<ExtraCommands>
 			<Add after="xcopy ..\include ..\utils-1.0.0-bundle\include  /E/Y/I" />
 		</ExtraCommands>
-		<Unit filename="../include/datetime/formatDateTime.h" />
-		<Unit filename="../include/file/csv_file_reader.h" />
-		<Unit filename="../include/file/properties_file_reader.h" />
-		<Unit filename="../src/file/csv_file_reader.cpp" />
-		<Unit filename="../src/file/properties_file_reader.cpp" />
+		<Unit filename="../include/csv_file_reader.h" />
+		<Unit filename="../include/formatDateTime.h" />
+		<Unit filename="../include/logger.h" />
+		<Unit filename="../include/properties_file_reader.h" />
+		<Unit filename="../src/csv_file_reader.cpp" />
+		<Unit filename="../src/logger.cpp" />
+		<Unit filename="../src/properties_file_reader.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
