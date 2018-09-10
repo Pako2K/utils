@@ -46,7 +46,7 @@ namespace utils
       *  @param file_name [in] Name of the properties file
       *  @throw  string exception containing the description of the issue
       */
-    PropertiesFileReader(std::string file_name) throw(std::string);
+    PropertiesFileReader(std::string file_name);
 
     /**
       *  \brief Destructor (INLINE)
@@ -67,14 +67,14 @@ namespace utils
       *  @return
       */
     template <class TYPE, typename = std::enable_if<std::is_arithmetic<TYPE>::value> >
-    std::vector<TYPE> propertyCast(std::string key) const throw(std::string);
+    std::vector<TYPE> propertyCast(std::string key) const;
 
     /**
       *  \brief Returns the values of the properties with the specified key, as strings
       *  @param key [in] key which value has to be returned
       *  @return std::vector(std::string values for the properties with the specified key
       */
-    std::vector<std::string> operator() (std::string key) const throw(std::string);
+    std::vector<std::string> operator() (std::string key) const;
 
   protected:
     /**
@@ -87,9 +87,8 @@ namespace utils
 
   /// property(string key, vector<T> &values)
   template <class TYPE, typename = std::enable_if<std::is_arithmetic<TYPE>::value> >
-  std::vector<TYPE> PropertiesFileReader::propertyCast(std::string key) const throw(std::string) {
-    std::pair <std::multimap<std::string, std::string>::const_iterator, std::multimap<std::string, std::string>::const_iterator> ret;
-    ret = _properties.equal_range(key);
+  std::vector<TYPE> PropertiesFileReader::propertyCast(std::string key) const {
+    auto ret = _properties.equal_range(key);
     if ( ret.first == _properties.end() )
       throw std::string("Key NOT found: " + key);
 

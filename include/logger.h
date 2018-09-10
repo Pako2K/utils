@@ -2,6 +2,7 @@
 #define LOGGER_H
 
 
+// For non RELESAE or Library BUILD targets the logging is performed using "cout"
 #if !defined RELEASE_BUILD & !defined LIB_BUILD
   #include <iostream>
 
@@ -50,7 +51,7 @@
     public:
       static void initialize(const std::string &log_file_path);
       static void initialize(std::ostream &out);
-      static void initialize(LogLevel level, const std::string &log_file_path) throw(std::string);
+      static void initialize(LogLevel level, const std::string &log_file_path);
       static void initialize(LogLevel level, std::ostream &out);
 
       static void log(LogLevel level, std::string trace);

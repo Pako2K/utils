@@ -24,7 +24,6 @@
 #define CSV_FILE_READER_H
 
 #include <string>
-#include <list>
 #include <vector>
 #include <type_traits>
 
@@ -46,7 +45,7 @@ namespace utils
       *  @param file_name [in] Name of the properties file
       *  @throw  string exception containing the description of the issue
       */
-    CSVFileReader(std::string file_name, char separator) throw(std::string);
+    CSVFileReader(std::string file_name, char separator);
 
     /**
       *  \brief Destructor (INLINE)
@@ -58,17 +57,15 @@ namespace utils
       *  @param
       *  @return list<vector<string>> Reference to the list of records
       */
-    const std::list<std::vector<std::string>> & getRecords() { return _records; }
+    const std::vector<std::vector<std::string>> & getRecords() { return _records; }
 
   protected:
     /**
-      *  Multimap used to store in memory the content of the file
+      *  Vector used to store in memory the content of the file
       */
-    std::list<std::vector<std::string>> _records;
+    std::vector<std::vector<std::string>> _records;
 
   };
-
-
 
 
 
