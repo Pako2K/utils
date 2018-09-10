@@ -8,11 +8,14 @@ using namespace utils;
 /// ************************************************* PUBLIC **************************************************************
 
 /// CONSTRUCTOR()
-CSVFileReader::CSVFileReader(std::string file_name, char separator) throw(std::string) {
+CSVFileReader::CSVFileReader(std::string file_name, char separator) {
   // Open file
   std::ifstream file(file_name, std::ios::in);
   if (!file.is_open())
     throw std::string("File cannot be opened: " + file_name);
+
+  // Resize the vector for records
+  _records.reserve(100);
 
   // Read each line, discarding empty ones or starting with '#' or '!'
   std::string line {""};
@@ -39,6 +42,8 @@ CSVFileReader::CSVFileReader(std::string file_name, char separator) throw(std::s
   }
 
   file.close();
+
+  _records.shrink_to_fit();
 }
 
 /// ************************************************* END PUBLIC **********************************************************

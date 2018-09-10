@@ -21,7 +21,7 @@ void Logger::initialize(std::ostream &out) {
 }
 
 
-void Logger::initialize(LogLevel level, const std::string &log_file_path) throw(std::string) {
+void Logger::initialize(LogLevel level, const std::string &log_file_path) {
   try {
     if ( _ptr && _ptr->_level_map.at(int(level)) )
       return;
@@ -61,13 +61,14 @@ void Logger::log(LogLevel level, std::string trace) {
 
 void Logger::destroy() {
   auto map_iter = _ptr->_level_map.begin();
-  while ( map_iter != _ptr->_level_map.end() )
+  while ( map_iter != _ptr->_level_map.end() ) {
     if ( typeid((map_iter)->second) == typeid(std::ofstream) ) {
       dynamic_cast<std::ofstream&>(map_iter->second).close();
       delete &(map_iter++)->second;
     }
     else
       map_iter++;
+  }
 
   delete _ptr;
 }

@@ -8,7 +8,7 @@ using namespace utils;
 /// ************************************************* PUBLIC **************************************************************
 
 /// CONSTRUCTOR()
-PropertiesFileReader::PropertiesFileReader(std::string file_name) throw(std::string) {
+PropertiesFileReader::PropertiesFileReader(std::string file_name) {
 
   // Open file
   std::ifstream prop_file(file_name, std::ios::in);
@@ -45,7 +45,7 @@ PropertiesFileReader::PropertiesFileReader(std::string file_name) throw(std::str
     while ( isspace(value[--i]) );
     value.erase(++i);
 
-    _properties.insert(std::pair<std::string, std::string>(key, value));
+    _properties.insert(std::make_pair(key, value));
   }
 
   // Close file
@@ -54,9 +54,8 @@ PropertiesFileReader::PropertiesFileReader(std::string file_name) throw(std::str
 
 
 /// operator() (string key)
-std::vector<std::string> PropertiesFileReader::operator() (std::string key) const throw(std::string) {
-  std::pair <std::multimap<std::string, std::string>::const_iterator, std::multimap<std::string, std::string>::const_iterator> ret;
-  ret = _properties.equal_range(key);
+std::vector<std::string> PropertiesFileReader::operator() (std::string key) const {
+  auto ret = _properties.equal_range(key);
   if ( ret.first == _properties.end() )
     throw std::string("Key NOT found: " + key);
 
